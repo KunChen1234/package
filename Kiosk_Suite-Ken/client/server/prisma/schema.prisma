@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Area {
+  id        Int     @id @default(autoincrement())
+  areaName  String? @unique
+  areaColor String?
+  Users     User[]
+}
+
+model User {
+  id             Int         @id @default(autoincrement())
+  userID         String?     @unique
+  firstName      String?
+  lastName       String?
+  photo          String      @default("miner.png")
+  job            String?
+  areaName       String?
+  departmentName String?
+  Area           Area?       @relation(fields: [areaName], references: [areaName])
+  Department     Department? @relation(fields: [departmentName], references: [departmentName])
+  LoginInfo      LoginInfo?
+}
+
+model Department {
+  id              Int     @id @default(autoincrement())
+  departmentName  String? @unique
+  departmentColor String?
+  Users           User[]
+}
+
+model LoginInfo {
+  id             Int       @id @default(autoincrement())
+  userID         String    @unique
+  LoginTime      String
+  LampMAC        String
+  LampSN         String
+  LampBssid      String?
+  LastUpdateTime String?
+  isDayShift     Boolean
+  Location       Location? @relation(fields: [LampBssid], references: [BSSID])
+  User           User      @relation(fields: [userID], references: [userID])
+}
+
+model Location {
+  id           Int         @id @default(autoincrement())
+  locationName String?
+  BSSID        String?     @unique
+  LoginInfo    LoginInfo[]
+}

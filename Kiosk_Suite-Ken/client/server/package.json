@@ -1,0 +1,43 @@
+{
+  "name": "kiosk_backend",
+  "version": "1.0.0",
+  "description": "Backend for Roobuck Kiosks. Reads from RFID scanner, queries database and posts to websocket.",
+  "main": "./build/app.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "start": "node ./build/app.js",
+    "nw-test": "ts-node ./network_test.ts",
+    "debug": "ts-node ./src/app_new1.ts --NODE_ENV development",
+    "compile": "tsc --build --clean && tsc",
+    "generate": "prisma generate",
+    "lint": "eslint ./src/ --ext .ts,.tsx",
+    "lint-fix": "eslint ./src/ --ext .ts,.tsx --fix"
+  },
+  "author": "Chris Brockett",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/config": "^0.0.41",
+    "@types/serialport": "^8.0.2",
+    "@types/uuid": "^8.3.4",
+    "@types/websocket": "^1.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "eslint": "^8.7.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.8.1",
+    "@roobuck-rnd/nfc_tools": "^2.3.2",
+    "config": "^3.3.7",
+    "dotenv": "^14.3.2",
+    "prisma": "^3.8.1",
+    "roobuck_kiosk": "file:..",
+    "serialport": "^9.2.8",
+    "short-uuid": "^4.2.0",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.5.4",
+    "uuid": "^8.3.2",
+    "winston": "^3.6.0",
+    "winston-daily-rotate-file": "^4.6.1"
+  }
+}

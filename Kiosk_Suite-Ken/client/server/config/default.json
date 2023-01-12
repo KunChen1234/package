@@ -1,0 +1,11 @@
+{
+	"production": false,
+	"dbConfig": {
+		"dbUrl": "postgres://localhost:5432/data?",
+		"provider": "postgres",
+		"port": "5432",
+		"host": "localhost"
+	},
+	"nwInterface": "eth0",
+	"tcpPort":14400
+}
